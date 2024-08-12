@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useAccount } from "wagmi";
 import { EvmChain } from "@moralisweb3/common-evm-utils";
 
-import Total from "@/components/total";
+// import Total from "@/components/total";
 import Glow from "@/components/ui/glow";
 import HeroTitle from "@/components/hero-title";
 import ButtonBuy from "@/components/button-buy";

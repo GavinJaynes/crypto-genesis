@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useAccount } from "wagmi";
 import { motion, inView } from "framer-motion";
 import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";

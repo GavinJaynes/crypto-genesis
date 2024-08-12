@@ -5,17 +5,14 @@ import { WagmiProvider } from "wagmi";
 import { arbitrum, bsc, mainnet } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// 0. Setup queryClient
 const queryClient = new QueryClient();
 
-// 1. Get projectId from https://cloud.walletconnect.com
-const projectId = "d95369f8aa5b392a42965c6359b3a7b4";
+const projectId = import.meta.env.VITE_PROJECT_ID;
 
-// 2. Create wagmiConfig
 const metadata = {
-  name: "AppKit",
-  description: "AppKit Example",
-  url: "https://web3modal.com", // origin must match your domain & subdomain
+  name: "WalletPal",
+  description: "Build the New Internet Hackathon - Submission by Garlic",
+  url: "https://main--wallet-pal.netlify.app/",
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 

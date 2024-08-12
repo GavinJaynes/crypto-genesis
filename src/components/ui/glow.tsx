@@ -12,7 +12,8 @@ export const Glow = () => {
       <div
         className={twMerge(
           chainId === 1 && "from-indigo-200/20 to-indigo-600/80",
-          chainId === 56 && "from-amber-200/20 to-amber-400/90",
+          chainId === 56 && "from-amber-200/20 to-amber-400/60",
+          chainId === 42161 && "from-blue-100/20 to-blue-500/90",
           "aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr opacity-40"
         )}
         style={{

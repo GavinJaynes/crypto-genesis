@@ -1,4 +1,6 @@
-function Ethereum(props: any) {
+type EthereumProps = React.SVGProps<SVGSVGElement>;
+
+function Ethereum(props: EthereumProps) {
   return (
     <svg
       width="24"

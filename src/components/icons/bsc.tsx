@@ -1,4 +1,6 @@
-function Bsc(props: any) {
+type BscProps = React.SVGProps<SVGSVGElement>;
+
+function Bsc(props: BscProps) {
   return (
     <svg
       viewBox="0 0 32 32"

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import Bsc from "@/components/icons/bsc";
 import Ethereum from "@/components/icons/ethereum";
-import Arbitrum from "@/components/icons/Arbitrum";
+import Arbitrum from "@/components/icons/arbitrum";
 
 import {
   Tooltip,

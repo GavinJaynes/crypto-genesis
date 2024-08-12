@@ -9,6 +9,7 @@ const ButtonSwap = () => {
     <Button
       size="sm"
       type="button"
+      variant="outline"
       onClick={() => open({ view: "Swap" as any })} // Type assertion to suppress the error
     >
       Swap

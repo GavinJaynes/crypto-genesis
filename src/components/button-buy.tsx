@@ -7,6 +7,7 @@ const ButtonBuy = () => {
     <Button
       size="sm"
       type="button"
+      variant="outline"
       onClick={() => open({ view: "OnRampProviders" })}
     >
       Buy

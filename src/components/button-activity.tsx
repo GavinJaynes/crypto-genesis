@@ -9,8 +9,8 @@ const ButtonActivity = () => {
     <Button
       size="sm"
       type="button"
-      // @ts-ignore
-      onClick={() => open({ view: "Transactions" })}
+      variant="outline"
+      onClick={() => open({ view: "Transactions" as any })} // Type assertion to suppress the error
     >
       Activity
     </Button>

@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button";
 
 import Bsc from "@/components/icons/bsc";
 import Ethereum from "@/components/icons/ethereum";
+import Arbitrum from "@/components/icons/Arbitrum";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const ButtonAccount = () => {
   const { isConnected, address, chainId } = useAccount();
@@ -17,25 +25,44 @@ const ButtonAccount = () => {
 
   return (
     <div className="flex items-center">
-      <Button
-        type="button"
-        variant="ghost"
-        onClick={() => open({ view: "Networks" })}
-        className="px-2"
-      >
-        {chainId === 56 && <Bsc />}
-        {chainId === 1 && <Ethereum />}
-        <span className="sr-only">Change network</span>
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => open({ view: "Networks" })}
+              className="px-2"
+            >
+              {chainId === 56 && <Bsc />}
+              {chainId === 1 && <Ethereum />}
+              {chainId === 42161 && <Arbitrum />}
+              <span className="sr-only">Change network</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Change Networks</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
-      <Button
-        type="button"
-        variant="ghost"
-        onClick={() => open({ view: "Account" })}
-        className="text-slate-200 px-2"
-      >
-        {truncatedAddress(address!)}
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              className="text-slate-200 px-2"
+              onClick={() => open({ view: "Profile" as any })}
+            >
+              {truncatedAddress(address!)}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>View your account</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   );
 };

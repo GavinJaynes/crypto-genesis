@@ -1,12 +1,11 @@
+import { useEffect, useRef } from "react";
 import { useAccount } from "wagmi";
-import { motion } from "framer-motion";
+import { motion, inView } from "framer-motion";
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
 import { cn, formatNumber } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-
-import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
-
-import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
 type WalletTokenProps = {
   token: EvmErc20TokenBalanceWithPrice;
@@ -23,8 +22,22 @@ const WalletToken = ({
 }: WalletTokenProps) => {
   const { chainId } = useAccount();
 
+  const section = useRef<HTMLDivElement>(null);
+
+  if (section.current) {
+    inView(section.current, () => {
+      console.log(section.current?.id);
+      // Add query param
+      window.history.pushState(null, "", `#${section.current?.id}`);
+    });
+  }
+
   return (
-    <div className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex justify-center items-center snap-center">
+    <section
+      ref={section}
+      id={token.symbol.toLowerCase()}
+      className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex justify-center items-center snap-center"
+    >
       {isLoading && (
         <div className="flex gap-6">
           <Skeleton className="h-[60px] w-48 rounded-xl opacity-50" />
@@ -33,8 +46,8 @@ const WalletToken = ({
       )}
 
       {token && (
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
+        <div className="flex flex-col gap-4 px-6">
+          <div className="flex gap-4 flex-wrap">
             <motion.span
               className={cn(
                 isFetching && "blur scale-125",
@@ -109,7 +122,7 @@ const WalletToken = ({
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

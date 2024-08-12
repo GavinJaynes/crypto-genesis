@@ -11,10 +11,13 @@ import WalletToken from "@/components/wallet-token";
 import ConnectButton from "@/components/button-connect";
 import AccountButton from "@/components/button-account";
 import ButtonActivity from "@/components/button-activity";
+import WalletNavigation from "@/components/wallet-navigation";
+
+// Better name this
+import UserBalance from "@/components/user-balance";
 
 import { useWalletTokens } from "@/hooks/useWalletTokens";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
-import UserBalance from "./components/user-balance";
 
 // TODO: move this
 const getEvmChain = (chainId: number) => {
@@ -47,7 +50,7 @@ function App() {
           <>
             {/* <Total /> */}
 
-            <UserBalance />
+            {isError && <UserBalance />}
 
             {!isError &&
               walletTokens?.map((token, index) => (
@@ -60,11 +63,18 @@ function App() {
                 />
               ))}
 
-            <div className="fixed top-[40%] max-w-xl mx-auto w-full inset-x-6 flex justify-center">
+            {!isError && walletTokens && (
+              <WalletNavigation
+                isLoading={isLoading}
+                walletTokens={walletTokens}
+              />
+            )}
+
+            <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full sm:inset-x-6 sm:flex sm:justify-center">
               <AccountButton />
             </div>
 
-            <div className="flex gap-3 justify-center mt-2 fixed top-[58%] max-w-md mx-auto w-full right-6 sm:inset-x-0">
+            <div className="flex gap-3 sm:justify-center mt-2 fixed sm:top-[58%] bottom-4 max-w-md mx-auto w-full sm:right-6 sm:inset-x-0 px-6">
               <ButtonBuy />
               <ButtonSwap />
               <ButtonActivity />

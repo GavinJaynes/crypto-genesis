@@ -14,7 +14,9 @@ import ButtonActivity from "@/components/button-activity";
 
 import { useWalletTokens } from "@/hooks/useWalletTokens";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import UserBalance from "./components/user-balance";
 
+// TODO: move this
 const getEvmChain = (chainId: number) => {
   switch (chainId) {
     case 1:
@@ -27,34 +29,36 @@ const getEvmChain = (chainId: number) => {
 };
 
 function App() {
+  const ref = useRef(null);
+  const scrollDirection = useScrollDirection(ref);
   const { isConnected, address, chainId } = useAccount();
-  const { walletTokens, isLoading, isFetching } = useWalletTokens({
+  const { walletTokens, isLoading, isFetching, isError } = useWalletTokens({
     address,
     chain: getEvmChain(chainId || 56),
   });
-
-  const ref = useRef(null);
-  const scrollDirection = useScrollDirection(ref);
 
   return (
     <div className="min-h-svh bg-zinc-950 flex items-center justify-center relative overflow-hidden isolate">
       <div
         ref={ref}
-        className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-scroll overflow-x-hidden max-h-screen"
+        className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-auto overflow-x-hidden max-h-screen"
       >
         {isConnected ? (
           <>
-            <Total />
+            {/* <Total /> */}
 
-            {walletTokens?.map((token, index) => (
-              <WalletToken
-                key={index}
-                token={token}
-                isLoading={isLoading}
-                isFetching={isFetching}
-                scrollDirection={scrollDirection}
-              />
-            ))}
+            <UserBalance />
+
+            {!isError &&
+              walletTokens?.map((token, index) => (
+                <WalletToken
+                  key={index}
+                  token={token}
+                  isLoading={isLoading}
+                  isFetching={isFetching}
+                  scrollDirection={scrollDirection}
+                />
+              ))}
 
             <div className="fixed top-[40%] max-w-xl mx-auto w-full inset-x-6 flex justify-center">
               <AccountButton />
@@ -67,7 +71,7 @@ function App() {
             </div>
           </>
         ) : (
-          <div className="flex flex-col gap-6 px-6 sm:px-0">
+          <div className="flex flex-col gap-6 px-6 sm:px-12">
             <HeroTitle />
             <ConnectButton />
           </div>

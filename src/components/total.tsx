@@ -9,6 +9,10 @@ const Total = () => {
     return <div>Loading...</div>;
   }
 
+  if (!walletBalance) {
+    return null;
+  }
+
   return (
     <p className="text-slate-300 fixed top-6 right-12">
       ${walletBalance?.totalNetworthUsd} USD

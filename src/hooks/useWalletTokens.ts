@@ -8,6 +8,7 @@ import {
 } from "@moralisweb3/common-evm-utils";
 
 interface WalletTokensResult {
+  isError: boolean;
   isLoading: boolean;
   isFetching: boolean;
   walletTokens: GetWalletTokenBalancesPriceOperationResponse["result"];
@@ -23,6 +24,7 @@ export const useWalletTokens = ({
   // Call the Moralis API to get the wallet tokens
   // Wrap in Tanstack's useQuery hook
   const {
+    isError,
     isLoading,
     isFetching,
     data: walletTokens,
@@ -39,5 +41,10 @@ export const useWalletTokens = ({
     enabled: !!address && !!chain,
   });
 
-  return { walletTokens: walletTokens?.result || [], isLoading, isFetching };
+  return {
+    isError,
+    isLoading,
+    isFetching,
+    walletTokens: walletTokens?.result || [],
+  };
 };

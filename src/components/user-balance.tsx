@@ -75,7 +75,7 @@ const UserBalance = () => {
   }, [balance, data, isSuccess, toast]);
 
   return (
-    <div className="mx-auto text-slate-200 relative">
+    <div className="mx-auto text-slate-200 relative py-12 px-6">
       {isLoading && (
         <div className="flex gap-6">
           <Skeleton className="h-[60px] w-48 rounded-xl opacity-50" />
@@ -120,6 +120,10 @@ const UserBalance = () => {
           )}
         </div>
       )}
+      <p className="text-xs text-destructive max-w-xs leading-5 mt-6">
+        We are having trouble retrieving all the tokens in your wallet. But you
+        can still swap and buy tokens as well as view your activity.
+      </p>
     </div>
   );
 };

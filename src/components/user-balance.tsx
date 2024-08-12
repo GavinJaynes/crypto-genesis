@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
@@ -8,10 +9,8 @@ import { cn } from "@/lib/utils";
 import { formatNumber } from "@/lib/utils";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useToast } from "@/components/ui/use-toast";
 
 const UserBalance = () => {
-  const { toast } = useToast();
   const { close } = useWeb3Modal();
   const { address, chainId } = useAccount();
   const { data: event } = useWeb3ModalEvents();
@@ -19,6 +18,7 @@ const UserBalance = () => {
   const [balance, setBalance] = useState(0);
   const [balanceUp, setBalanceUp] = useState(false);
   const [balanceDown, setBalanceDown] = useState(false);
+  const [currentChainId, setCurrentChainId] = useState(chainId);
 
   const { data, isLoading, isError, refetch, isFetching, isSuccess } =
     useBalance({
@@ -28,38 +28,38 @@ const UserBalance = () => {
   useEffect(() => {
     // Get new balance after swap
     if (event.event === "SWAP_SUCCESS") {
+      // Close the modal
       close();
-      //
+      // Refetch the balance
       refetch();
-      //
-      toast({
-        title: "Swap successful",
-        description: "Your swap was successful",
+      // Display success toast
+      toast("Swap successful", {
+        description: "Your swap was successful ",
       });
     }
-  }, [close, event.event, refetch, toast]);
+  }, [close, event.event, refetch]);
 
-  // TODO: id chain changes do nothing
   useEffect(() => {
     if (isSuccess && data) {
-      if (balance !== 0 && Number(data.formatted) !== balance) {
+      const newBalance = Number(data.formatted);
+      const isNetworkChange = chainId !== currentChainId;
+
+      if (balance !== 0 && newBalance !== balance && !isNetworkChange) {
         // Increase balance
-        if (Number(data.formatted) > balance) {
+        if (newBalance > balance) {
           setBalanceUp(true);
           setBalanceDown(false);
 
-          toast({
-            title: "Balance updated",
+          toast("Balance updated", {
             description: "Your balance just went up!",
           });
         }
         // Decrease balance
-        if (Number(data.formatted) < balance) {
+        if (newBalance < balance) {
           setBalanceUp(false);
           setBalanceDown(true);
 
-          toast({
-            title: "Balance updated",
+          toast("Balance updated", {
             description: "Your balance just went down!",
           });
         }
@@ -70,9 +70,10 @@ const UserBalance = () => {
         setBalanceDown(false);
       }, 900);
 
+      setCurrentChainId(chainId);
       setBalance(Number(data.formatted));
     }
-  }, [balance, data, isSuccess, toast]);
+  }, [balance, chainId, currentChainId, data, isSuccess]);
 
   return (
     <div className="mx-auto text-slate-200 relative py-12 px-6">
@@ -106,6 +107,7 @@ const UserBalance = () => {
           >
             {data.symbol}
           </span>
+
           {balanceUp && (
             <TrendingUpIcon
               size={20}

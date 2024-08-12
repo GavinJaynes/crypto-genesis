@@ -1,7 +1,7 @@
 export const GlowCircle = () => {
   return (
     <div
-      className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform-gpu opacity-25"
+      className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform-gpu opacity-10"
       aria-hidden="true"
     >
       <svg

@@ -2,7 +2,7 @@ import Moralis from "moralis";
 import { useState, useEffect, ReactNode, useRef } from "react";
 import { LoaderCircleIcon, SkullIcon } from "lucide-react";
 
-export const MoralisProvider = ({ children }: { children: ReactNode }) => {
+export const ProviderMoralis = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);
   const initializationAttempted = useRef(false);

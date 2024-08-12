@@ -39,11 +39,11 @@ function App() {
 
   return (
     <div className="min-h-svh bg-zinc-950 flex items-center justify-center relative overflow-hidden isolate">
-      <div
-        ref={ref}
-        className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-auto overflow-x-hidden max-h-screen"
-      >
-        {isConnected ? (
+      {isConnected ? (
+        <div
+          ref={ref}
+          className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-auto overflow-x-hidden max-h-screen"
+        >
           <>
             {/* <Total /> */}
 
@@ -70,13 +70,14 @@ function App() {
               <ButtonActivity />
             </div>
           </>
-        ) : (
-          <div className="flex flex-col gap-6 px-6 sm:px-12">
-            <HeroTitle />
-            <ConnectButton />
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center gap-6 px-6 sm:px-12">
+          <HeroTitle />
+          <ConnectButton />
+        </div>
+      )}
+
       <div className="fixed left-0 top-[23%]">
         <Glow />
       </div>

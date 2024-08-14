@@ -23,13 +23,21 @@ const WalletNavigation = ({
     const originalPushState = window.history.pushState;
     const originalReplaceState = window.history.replaceState;
 
-    window.history.pushState = function () {
-      originalPushState.apply(this, arguments);
+    window.history.pushState = function (
+      data: any,
+      unused: string,
+      url?: string | URL | null | undefined
+    ) {
+      originalPushState.call(this, data, unused, url);
       window.dispatchEvent(new Event("locationchange"));
     };
 
-    window.history.replaceState = function () {
-      originalReplaceState.apply(this, arguments);
+    window.history.replaceState = function (
+      data: any,
+      unused: string,
+      url?: string | URL | null | undefined
+    ) {
+      originalReplaceState.call(this, data, unused, url);
       window.dispatchEvent(new Event("locationchange"));
     };
 

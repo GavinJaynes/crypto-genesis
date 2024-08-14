@@ -36,7 +36,7 @@ const WalletToken = ({
     <section
       ref={section}
       id={token.symbol.toLowerCase()}
-      className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex flex-col justify-center items-center snap-center"
+      className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex flex-col justify-center sm:items-center snap-center"
     >
       {isLoading && (
         <div className="flex gap-6">
@@ -50,7 +50,7 @@ const WalletToken = ({
       </div>
 
       {token && (
-        <div className="flex flex-col gap-4 px-6">
+        <div className="flex flex-col gap-4 px-8">
           <div className="flex sm:gap-4 gap-2 flex-wrap">
             <motion.span
               className={cn(

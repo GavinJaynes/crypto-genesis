@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
-const WalletNavigation = ({
+const NavigationWallet = ({
   isLoading,
   walletTokens,
 }: {
@@ -57,7 +57,7 @@ const WalletNavigation = ({
   }
 
   return (
-    <nav className="fixed right-3 sm:right-48 top-0 h-screen w-12">
+    <nav className="fixed right-3 sm:right-48 top-24 h-screen w-12">
       <ul className="flex flex-col gap-6 sm:justify-center py-10 items-center h-full">
         {walletTokens.map((token, index) => (
           <li key={index} className="text-xs relative">
@@ -84,4 +84,4 @@ const WalletNavigation = ({
   );
 };
 
-export default WalletNavigation;
+export default NavigationWallet;

@@ -5,13 +5,10 @@ import { EvmChain } from "@moralisweb3/common-evm-utils";
 // import Total from "@/components/total";
 import Glow from "@/components/ui/glow";
 import HeroTitle from "@/components/hero-title";
-import ButtonBuy from "@/components/button-buy";
-import ButtonSwap from "@/components/button-swap";
 import WalletToken from "@/components/wallet-token";
 import ConnectButton from "@/components/button-connect";
-import AccountButton from "@/components/button-account";
-import ButtonActivity from "@/components/button-activity";
-import WalletNavigation from "@/components/wallet-navigation";
+import NavigationWallet from "@/components/navigation-wallet";
+import NavigationAccount from "@/components/navigation-account";
 
 // Better name this
 import UserBalance from "@/components/user-balance";
@@ -65,21 +62,22 @@ function App() {
               ))}
 
             {!isError && walletTokens && (
-              <WalletNavigation
+              <NavigationWallet
                 isLoading={isLoading}
                 walletTokens={walletTokens}
               />
             )}
 
             <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full sm:inset-x-6 sm:flex sm:justify-center">
-              <AccountButton />
+              {/* <AccountButton /> */}
+              <NavigationAccount />
             </div>
 
-            <div className="flex gap-3 sm:justify-center mt-2 fixed sm:top-[58%] bottom-4 max-w-md mx-auto w-full sm:right-6 sm:inset-x-0 px-6">
+            {/* <div className="flex gap-3 sm:justify-center mt-2 fixed sm:top-[58%] bottom-4 max-w-md mx-auto w-full sm:right-6 sm:inset-x-0 px-6">
               <ButtonBuy />
               <ButtonSwap />
               <ButtonActivity />
-            </div>
+            </div> */}
           </>
         </div>
       ) : (

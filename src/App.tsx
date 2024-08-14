@@ -34,6 +34,7 @@ const getEvmChain = (chainId: number) => {
 function App() {
   const ref = useRef(null);
   const scrollDirection = useScrollDirection(ref);
+
   const { isConnected, address, chainId } = useAccount();
   const { walletTokens, isLoading, isFetching, isError } = useWalletTokens({
     address,

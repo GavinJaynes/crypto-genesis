@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useAccount } from "wagmi";
 import { motion, inView } from "framer-motion";
-import { ChevronUpIcon, TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
 import { cn, formatNumber } from "@/lib/utils";
@@ -27,8 +27,7 @@ const WalletToken = ({
 
   if (section.current) {
     inView(section.current, () => {
-      console.log(section.current?.id);
-      // Add query param
+      // Add hash
       window.history.pushState(null, "", `#${section.current?.id}`);
     });
   }
@@ -52,11 +51,11 @@ const WalletToken = ({
 
       {token && (
         <div className="flex flex-col gap-4 px-6">
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex sm:gap-4 gap-2 flex-wrap">
             <motion.span
               className={cn(
                 isFetching && "blur scale-125",
-                "text-6xl font-bold bg-gradient-to-br from-neutral-50 to-neutral-400 bg-clip-text text-transparent transition-all scale-100"
+                "sm:text-6xl text-5xl font-bold bg-gradient-to-br from-neutral-50 to-neutral-400 bg-clip-text text-transparent transition-all scale-100"
               )}
               initial={{
                 opacity: 0,
@@ -77,7 +76,7 @@ const WalletToken = ({
               transition={{ duration: 0.5, ease: "easeOut" }}
               whileInView={{ opacity: 1, translateY: 0, filter: "blur(0)" }}
               className={cn(
-                "font-bold text-6xl",
+                "font-bold sm:text-6xl text-5xl",
                 chainId === 1 && "text-indigo-400",
                 chainId === 56 && "text-amber-400"
               )}
@@ -85,7 +84,7 @@ const WalletToken = ({
               {token.symbol}
             </motion.span>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <div className="flex flex-col sm:flex-row sm:gap-4 gap-2 sm:items-center">
             <motion.span
               className={cn(
                 isFetching && "blur scale-125",

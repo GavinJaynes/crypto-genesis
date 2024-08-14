@@ -29,7 +29,7 @@ export const useWalletTokens = ({
     isFetching,
     data: walletTokens,
   } = useQuery({
-    queryKey: [`users_wallet_tokens_${address}_${chain}`],
+    queryKey: ["users_wallet_tokens", address, chain?.name],
     queryFn: async () =>
       await Moralis.EvmApi.wallets.getWalletTokenBalancesPrice({
         chain,

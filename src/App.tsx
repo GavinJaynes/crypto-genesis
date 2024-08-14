@@ -89,9 +89,7 @@ function App() {
         </div>
       )}
 
-      <div className="fixed left-0 top-[23%]">
-        <Glow />
-      </div>
+      <Glow />
     </div>
   );
 }

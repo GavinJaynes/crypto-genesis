@@ -6,7 +6,7 @@ export const Glow = () => {
 
   return (
     <div
-      className="pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 transform-gpu blur-3xl lg:top-auto lg:translate-y-0 lg:transform-gpu"
+      className="pointer-events-none absolute sm:left-12 -left-3/4 sm:top-1/2 top-1/3 -translate-y-1/2 transform-gpu blur-3xl lg:top-auto lg:translate-y-0 lg:transform-gpu"
       aria-hidden="true"
     >
       <div

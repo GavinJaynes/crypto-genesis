@@ -21,6 +21,9 @@ const config = defaultWagmiConfig({
   chains,
   projectId,
   metadata,
+  auth: {
+    socials: ["google", "x", "github"],
+  },
 });
 
 // 3. Create modal

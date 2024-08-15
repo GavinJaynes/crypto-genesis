@@ -17,8 +17,11 @@ import { useAccount } from "wagmi";
 
 import { truncatedAddress } from "@/lib/utils";
 import NavigationItemWallet from "./navigation-item-wallet";
-import NavigationItemWalletSwitch from "./navigation-item-wallet-switch";
+import NavigationItemNetTotal from "./navigation-item-net-total";
 import NavigationItemNetwork from "./navigation-item-network";
+import NavigationItemNetworkSwitch from "./navigation-item-network-switch";
+import NavigationItemProfile from "./navigation-item-profile";
+import NavigationItemDisconnect from "./navigation-item-disconnect";
 
 const components: { title: string; href: string; description: string }[] = [
   // {
@@ -39,17 +42,17 @@ const components: { title: string; href: string; description: string }[] = [
   //   description:
   //     "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   // },
-  {
-    title: "Switch networks",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Account settings",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
+  // {
+  //   title: "Switch networks",
+  //   href: "/docs/primitives/scroll-area",
+  //   description: "Visually or semantically separates content.",
+  // },
+  // {
+  //   title: "Account settings",
+  //   href: "/docs/primitives/tabs",
+  //   description:
+  //     "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+  // },
   {
     title: "Disconnect wallet",
     href: "/docs/primitives/tooltip",
@@ -122,18 +125,30 @@ const NavigationAccount = () => {
               </li>
 
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                <NavigationItemWalletSwitch address={address!} />
+                <NavigationItemNetTotal />
               </li>
 
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemNetwork />
               </li>
 
-              {components.map((component) => (
+              <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                <NavigationItemNetworkSwitch />
+              </li>
+
+              <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                <NavigationItemProfile />
+              </li>
+
+              <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                <NavigationItemDisconnect />
+              </li>
+
+              {/* {components.map((component) => (
                 <ListItemHref key={component.title} title={component.title}>
                   {component.description}
                 </ListItemHref>
-              ))}
+              ))} */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

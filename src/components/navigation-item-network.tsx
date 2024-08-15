@@ -12,16 +12,20 @@ const NavigationItemNetwork = () => {
   return (
     <button
       type="button"
-      className="text-left"
+      className="text-left group"
       onClick={() => open({ view: "Networks" })}
     >
       <h5 className="text-sm font-medium leading-none gap-2 flex items-center">
-        {chainId === 56 && <Bsc />}
-        {chainId === 1 && <Ethereum />}
-        {chainId === 42161 && <Arbitrum />} Connected network
+        <div className="grayscale group-hover:grayscale-0 transition-all duration-300">
+          {chainId === 56 && <Bsc />}
+          {chainId === 1 && <Ethereum />}
+          {chainId === 42161 && <Arbitrum />}
+        </div>
+        Connected network
       </h5>
-      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2 ">
-        You are connected to the {chain?.name} network
+      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2">
+        You are connected to the{" "}
+        <span className="underline">{chain?.name}</span> network
       </p>
     </button>
   );

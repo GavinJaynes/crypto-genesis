@@ -23,44 +23,6 @@ import NavigationItemNetworkSwitch from "./navigation-item-network-switch";
 import NavigationItemProfile from "./navigation-item-profile";
 import NavigationItemDisconnect from "./navigation-item-disconnect";
 
-const components: { title: string; href: string; description: string }[] = [
-  // {
-  //   title: "Connected wallet",
-  //   href: "/docs/primitives/alert-dialog",
-  //   description:
-  //     "A modal dialog that interrupts the user with important content and expects a response.",
-  // },
-  // {
-  //   title: "Switch wallet account",
-  //   href: "/docs/primitives/hover-card",
-  //   description:
-  //     "For sighted users to preview content available behind a link.",
-  // },
-  // {
-  //   title: "Connect network",
-  //   href: "/docs/primitives/progress",
-  //   description:
-  //     "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  // },
-  // {
-  //   title: "Switch networks",
-  //   href: "/docs/primitives/scroll-area",
-  //   description: "Visually or semantically separates content.",
-  // },
-  // {
-  //   title: "Account settings",
-  //   href: "/docs/primitives/tabs",
-  //   description:
-  //     "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  // },
-  {
-    title: "Disconnect wallet",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element ",
-  },
-];
-
 const NavigationAccount = () => {
   const { open } = useWeb3Modal();
   const { address } = useAccount();
@@ -143,18 +105,9 @@ const NavigationAccount = () => {
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemDisconnect />
               </li>
-
-              {/* {components.map((component) => (
-                <ListItemHref key={component.title} title={component.title}>
-                  {component.description}
-                </ListItemHref>
-              ))} */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {/* <NavigationMenuItem>
-          <ButtonAccount />
-        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );

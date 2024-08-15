@@ -1,4 +1,4 @@
-import { LogOutIcon, User2Icon } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 const NavigationItemDisconnect = () => {

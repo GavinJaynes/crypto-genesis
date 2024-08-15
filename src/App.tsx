@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { useAccount } from "wagmi";
-import { EvmChain } from "@moralisweb3/common-evm-utils";
 
-// import Total from "@/components/total";
 import Glow from "@/components/ui/glow";
 import HeroTitle from "@/components/hero-title";
 import WalletToken from "@/components/wallet-token";
@@ -16,17 +14,7 @@ import UserBalance from "@/components/user-balance";
 import { useWalletTokens } from "@/hooks/useWalletTokens";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
-// TODO: move this
-const getEvmChain = (chainId: number) => {
-  switch (chainId) {
-    case 1:
-      return EvmChain.ETHEREUM;
-    case 56:
-      return EvmChain.BSC;
-    default:
-      return EvmChain.BSC;
-  }
-};
+import { getEvmChain } from "@/lib/utils";
 
 function App() {
   const ref = useRef(null);
@@ -46,8 +34,6 @@ function App() {
           className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-auto overflow-x-hidden max-h-screen"
         >
           <>
-            {/* <Total /> */}
-
             {isError && <UserBalance />}
 
             {!isError &&
@@ -69,15 +55,8 @@ function App() {
             )}
 
             <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full sm:inset-x-6 sm:flex sm:justify-center">
-              {/* <AccountButton /> */}
               <NavigationAccount />
             </div>
-
-            {/* <div className="flex gap-3 sm:justify-center mt-2 fixed sm:top-[58%] bottom-4 max-w-md mx-auto w-full sm:right-6 sm:inset-x-0 px-6">
-              <ButtonBuy />
-              <ButtonSwap />
-              <ButtonActivity />
-            </div> */}
           </>
         </div>
       ) : (

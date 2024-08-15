@@ -11,6 +11,7 @@ interface WalletTokensResult {
   isError: boolean;
   isLoading: boolean;
   isFetching: boolean;
+  totalNetWorth: number;
   walletTokens: GetWalletTokenBalancesPriceOperationResponse["result"];
 }
 
@@ -41,10 +42,18 @@ export const useWalletTokens = ({
     enabled: !!address && !!chain,
   });
 
+  // Total net value
+  const totalNetWorth =
+    walletTokens?.result.reduce(
+      (sum, token) => sum + Number(token.usdValue),
+      0
+    ) || 0;
+
   return {
     isError,
     isLoading,
     isFetching,
+    totalNetWorth,
     walletTokens: walletTokens?.result || [],
   };
 };

@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { EvmChain } from "@moralisweb3/common-evm-utils";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,4 +19,15 @@ export const formatNumber = (number: number) => {
     notation: "compact",
     compactDisplay: "short",
   });
+};
+
+export const getEvmChain = (chainId: number) => {
+  switch (chainId) {
+    case 1:
+      return EvmChain.ETHEREUM;
+    case 56:
+      return EvmChain.BSC;
+    default:
+      return EvmChain.BSC;
+  }
 };

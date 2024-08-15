@@ -50,7 +50,7 @@ const WalletToken = ({
       </div>
 
       {token && (
-        <div className="flex flex-col gap-4 px-8">
+        <div className="flex flex-col gap-4 sm:pr-8 sm:pl-0 px-8">
           <div className="flex sm:gap-4 gap-2 flex-wrap">
             <motion.span
               className={cn(

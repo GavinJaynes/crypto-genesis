@@ -52,7 +52,7 @@ const NavigationWallet = ({
     };
   }, []);
 
-  if (isLoading || !walletTokens || walletTokens.length === 0) {
+  if (isLoading || !walletTokens || walletTokens.length < 2) {
     return null;
   }
 

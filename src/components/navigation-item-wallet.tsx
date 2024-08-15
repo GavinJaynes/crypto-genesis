@@ -18,7 +18,7 @@ const NavigationItemWallet = ({ address }: { address: Address }) => {
       </h5>
       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2">
         Your connected wallet address is{" "}
-        <p className="underline">{truncatedAddress(address!)}</p>
+        <span className="underline">{truncatedAddress(address!)}</span>
       </p>
     </button>
   );

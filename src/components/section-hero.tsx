@@ -1,5 +1,8 @@
+import X from "@/components/icons/x";
+import Google from "@/components/icons/google";
+import GitHub from "@/components/icons/github";
+import { ButtonModal } from "@/components/button-modal";
 import { GlowEffect } from "@/components/ui/glow-effect";
-import { ModalButton } from "@/components/modal-button";
 import { CubeAnimation } from "@/components/ui/cube-animation";
 
 import imageOne from "@/assets/hero-image-one.png";
@@ -7,10 +10,6 @@ import imageTwo from "@/assets/hero-image-two.png";
 import imageThree from "@/assets/hero-image-three.png";
 import imageFour from "@/assets/hero-image-four.png";
 import imageFive from "@/assets/hero-image-five.png";
-
-import X from "@/components/icons/x";
-import Google from "@/components/icons/google";
-import GitHub from "@/components/icons/github";
 
 const HeroComponent = () => {
   return (
@@ -23,27 +22,27 @@ const HeroComponent = () => {
           <div className="flex lg:flex-1">
             <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
               <span className="sr-only">Crypto Genesis</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-600 text-2xl tracking-tight ">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-600 text-2xl tracking-tight">
                 Crypto Genesis
               </span>
             </a>
           </div>
 
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
-            <ModalButton
+            <ButtonModal
               screen="GetWallet"
               variant="link"
               className="text-sm font-semibold leading-6 text-gray-400"
             >
               Get a wallet
-            </ModalButton>
-            <ModalButton
+            </ButtonModal>
+            <ButtonModal
               screen="WhatIsAWallet"
               variant="link"
               className="text-sm font-semibold leading-6 text-gray-400"
             >
               Learn about wallets
-            </ModalButton>
+            </ButtonModal>
           </div>
         </nav>
       </header>
@@ -67,13 +66,13 @@ const HeroComponent = () => {
                     celestial ease!
                   </p>
                   <div className="mt-10 flex items-center flex-wrap gap-6">
-                    <ModalButton variant="fancy" screen="">
+                    <ButtonModal variant="fancy" screen="">
                       Get started
-                    </ModalButton>
+                    </ButtonModal>
 
-                    <ModalButton variant="outline" screen="ConnectSocials">
+                    <ButtonModal variant="outline" screen="ConnectSocials">
                       Sign in with socials
-                    </ModalButton>
+                    </ButtonModal>
 
                     <div className="hidden sm:flex items-center gap-x-2">
                       <Google width={24} height={24} />

@@ -57,7 +57,7 @@ interface ModalButtonProps extends ButtonProps {
   children?: ReactNode;
 }
 
-export const ModalButton = ({
+export const ButtonModal = ({
   screen,
   children,
   ...buttonProps

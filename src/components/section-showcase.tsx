@@ -1,7 +1,7 @@
 import showcaseImage from "@/assets/showcase.png";
 import bgGradient from "@/assets/bg-gradient.jpg";
 import { BadgeCheckIcon } from "lucide-react";
-import { ModalButton } from "@/components/modal-button";
+import { ButtonModal } from "@/components/button-modal";
 
 const features = [
   {
@@ -45,13 +45,13 @@ const SectionShowcase = () => {
                 covered. Use Email, Socials or your preferred wallet to get
                 started.
               </p>
-              <ModalButton
+              <ButtonModal
                 screen="AllWallets"
                 variant="link"
                 className="px-0 underline"
               >
                 See supported wallets
-              </ModalButton>
+              </ButtonModal>
             </div>
             <div className="hidden sm:block relative min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none lg:h-[48rem]">
               <img

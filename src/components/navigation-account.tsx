@@ -1,6 +1,11 @@
 import * as React from "react";
+import { useAccount } from "wagmi";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { BicepsFlexedIcon, WalletIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useWalletTokens } from "@/hooks/useWalletTokens";
+import { getEvmChain, formatNumber } from "@/lib/utils";
 
 import {
   NavigationMenu,
@@ -10,22 +15,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { BicepsFlexedIcon, WalletIcon } from "lucide-react";
 
-import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useAccount } from "wagmi";
-
-import { truncatedAddress } from "@/lib/utils";
-import NavigationItemWallet from "./navigation-item-wallet";
-import NavigationItemNetTotal from "./navigation-item-net-total";
-import NavigationItemNetwork from "./navigation-item-network";
-import NavigationItemNetworkSwitch from "./navigation-item-network-switch";
-import NavigationItemProfile from "./navigation-item-profile";
-import NavigationItemDisconnect from "./navigation-item-disconnect";
+import NavigationItemWallet from "@/components/navigation-item-wallet";
+import NavigationItemNetwork from "@/components/navigation-item-network";
+import NavigationItemProfile from "@/components/navigation-item-profile";
+import NavigationItemNetTotal from "@/components/navigation-item-net-total";
+import NavigationItemDisconnect from "@/components/navigation-item-disconnect";
+import NavigationItemNetworkSwitch from "@/components/navigation-item-network-switch";
 
 const NavigationAccount = () => {
   const { open } = useWeb3Modal();
-  const { address } = useAccount();
+  const { address, chainId } = useAccount();
+
+  const { totalNetWorth } = useWalletTokens({
+    address,
+    chain: getEvmChain(chainId || 56),
+  });
 
   return (
     <NavigationMenu>
@@ -71,8 +76,7 @@ const NavigationAccount = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="gap-2">
-            <WalletIcon size={16} />
-            {truncatedAddress(address!)}
+            <WalletIcon size={16} />${formatNumber(totalNetWorth)} USD
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-full gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">

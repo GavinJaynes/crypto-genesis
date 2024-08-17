@@ -70,7 +70,8 @@ const HeroComponent = () => {
                     Start your crypto journey here.
                   </h1>
                   <p className="relative mt-6 text-lg leading-8 text-gray-300 sm:max-w-md lg:max-w-none">
-                    In the beginning, there was Crypto Genesis. Your cosmic
+                    In the beginning, people traded goods and services. Now
+                    there's a new way. Start your Crypto Genesis. Your cosmic
                     launchpad into the crypto universe – buy your first coin,
                     swap at light speed, and manage your digital treasures with
                     celestial ease!

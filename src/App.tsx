@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAccount } from "wagmi";
 
 import { getEvmChain } from "@/lib/utils";
@@ -22,20 +22,21 @@ import { useNotifications } from "@/hooks/useNotifications";
 function App() {
   const ref = useRef(null);
   const scrollDirection = useScrollDirection(ref);
-
   const { isConnected, address, chainId } = useAccount();
-
   const { walletTokens, isLoading, isFetching, isError } = useWalletTokens({
     address,
     chain: getEvmChain(chainId || 56),
   });
 
+  useEffect(() => {
+    // remove the hash from the url
+    window.history.pushState(null, "", window.location.pathname);
+  }, []);
+
   // Init swap events
   useSwapEvents({ address, chain: getEvmChain(chainId || 56) });
   // Init notifications events
   useNotifications({ address, chain: getEvmChain(chainId || 56) });
-
-  console.log(walletTokens);
 
   return (
     <>

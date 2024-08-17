@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAccount } from "wagmi";
 import { motion, inView } from "framer-motion";
 import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
@@ -21,15 +21,16 @@ const WalletToken = ({
   scrollDirection = "down",
 }: WalletTokenProps) => {
   const { chainId } = useAccount();
-
   const section = useRef<HTMLDivElement>(null);
 
-  if (section.current) {
-    inView(section.current, () => {
-      // Add hash
-      window.history.pushState(null, "", `#${section.current?.id}`);
-    });
-  }
+  useEffect(() => {
+    if (section.current) {
+      inView(section.current, () => {
+        // Add hash
+        window.history.pushState(null, "", `#${section.current?.id}`);
+      });
+    }
+  }, [section, chainId]);
 
   return (
     <section

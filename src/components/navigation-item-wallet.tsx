@@ -1,8 +1,8 @@
 import { WalletIcon } from "lucide-react";
 import { truncatedAddress } from "@/lib/utils";
-import type { Address } from "viem";
-
 import { useWeb3Modal } from "@web3modal/wagmi/react";
+
+import type { Address } from "viem";
 
 const NavigationItemWallet = ({ address }: { address: Address }) => {
   const { open } = useWeb3Modal();

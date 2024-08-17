@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
+
+import {
+  motion,
+  useTransform,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 
 const NavigationWallet = ({
   isLoading,
@@ -52,6 +60,25 @@ const NavigationWallet = ({
     };
   }, []);
 
+  const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
+
+  const springConfig = { stiffness: 100, damping: 5 };
+  const x = useMotionValue(0); // going to set this value on mouse move
+  // rotate the tooltip
+  const rotate = useSpring(
+    useTransform(x, [-100, 100], [-45, 45]),
+    springConfig
+  );
+  // translate the tooltip
+  const translateX = useSpring(
+    useTransform(x, [-100, 100], [-50, 50]),
+    springConfig
+  );
+  const handleMouseMove = (event: any) => {
+    const halfWidth = event.target.offsetWidth / 2;
+    x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
+  };
+
   if (isLoading || !walletTokens || walletTokens.length < 2) {
     return null;
   }
@@ -60,7 +87,48 @@ const NavigationWallet = ({
     <nav className="fixed right-1 sm:right-12 top-1/2 -translate-y-1/2 h-screen w-12">
       <ul className="flex flex-col gap-6 justify-center py-10 items-center h-full">
         {walletTokens.map((token, index) => (
-          <li key={index} className="text-xs relative">
+          <li
+            key={index}
+            className="text-xs relative"
+            onMouseEnter={() => setHoveredIndex(token.symbol.toLowerCase())}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <AnimatePresence mode="popLayout">
+              {hoveredIndex === token.symbol.toLowerCase() && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20, x: 0, scale: 0.6 }}
+                  animate={{
+                    opacity: 1,
+                    y: 40,
+                    x: -120,
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 10,
+                    },
+                  }}
+                  exit={{ opacity: 0, y: 20, x: -100, scale: 0.6 }}
+                  style={{
+                    translateX: translateX,
+                    rotate: rotate,
+                    whiteSpace: "nowrap",
+                  }}
+                  className="absolute -top-16 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-black z-50 shadow-xl px-4 py-2"
+                >
+                  <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px " />
+                  <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px " />
+                  <div className="font-bold text-white relative z-30 text-base">
+                    {token.name}
+                  </div>
+                  <div className="text-white text-xs">
+                    {formatNumber(Number(token.balanceFormatted))}{" "}
+                    {token.symbol}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {hash === `#${token.symbol.toLowerCase()}` && (
               <div className="sm:w-6 sm:h-6 w-5 h-5 bg-white/70 blur rounded-full absolute inset-0 m-auto animate-in zoom-in duration-1000"></div>
             )}
@@ -71,6 +139,7 @@ const NavigationWallet = ({
                 height={50}
                 src={token.logo}
                 alt={token.symbol}
+                onMouseMove={handleMouseMove}
                 className={cn(
                   "rounded-full sm:w-6 h-auto w-5",
                   "opacity-50" && hash !== `#${token.symbol.toLowerCase()}`

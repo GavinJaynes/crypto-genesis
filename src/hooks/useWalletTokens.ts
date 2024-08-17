@@ -43,6 +43,7 @@ export const useWalletTokens = ({
       }),
     refetchOnWindowFocus: false,
     enabled: !!address && !!chain,
+    refetchInterval: 10000,
   });
 
   // Total net value

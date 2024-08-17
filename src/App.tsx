@@ -17,6 +17,7 @@ import UserBalance from "@/components/user-balance";
 import { useSwapEvents } from "@/hooks/useSwapEvents";
 import { useWalletTokens } from "@/hooks/useWalletTokens";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useNotifications } from "@/hooks/useNotifications";
 
 function App() {
   const ref = useRef(null);
@@ -31,6 +32,10 @@ function App() {
 
   // Init swap events
   useSwapEvents({ address, chain: getEvmChain(chainId || 56) });
+  // Init notifications events
+  useNotifications({ address, chain: getEvmChain(chainId || 56) });
+
+  console.log(walletTokens);
 
   return (
     <>

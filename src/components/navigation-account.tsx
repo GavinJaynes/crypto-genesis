@@ -38,21 +38,15 @@ const NavigationAccount = () => {
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <BicepsFlexedIcon />
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      Wallet Pal
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed wallet assistant to help you keep
-                      track of your crypto assets.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
+                <div className="flex gap-4 h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-zinc-800 to-zinc-900 p-3 no-underline outline-none focus:shadow-md">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-600 text-2xl tracking-tight">
+                    Crypto Genesis
+                  </span>
+                  <p className="text-sm text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-300">
+                    Beautifully designed wallet assistant to help you take
+                    charge of your crypto assets.
+                  </p>
+                </div>
               </li>
               <ListItemButton
                 onClick={() => open({ view: "OnRampProviders" })}
@@ -86,21 +80,31 @@ const NavigationAccount = () => {
                 <NavigationItemWallet address={address!} />
               </li>
 
+              <span className="sm:hidden block w-3/4 h-px bg-gradient-to-tr from-gray-800/0 via-gray-800 to-gray-800/0 mx-auto"></span>
+
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemNetTotal />
               </li>
+
+              <span className="sm:hidden block w-3/4 h-px bg-gradient-to-tr from-gray-800/0 via-gray-800 to-gray-800/0 mx-auto"></span>
 
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemNetwork />
               </li>
 
+              <span className="sm:hidden block w-3/4 h-px bg-gradient-to-tr from-gray-800/0 via-gray-800 to-gray-800/0 mx-auto"></span>
+
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemNetworkSwitch />
               </li>
 
+              <span className="sm:hidden block w-3/4 h-px bg-gradient-to-tr from-gray-800/0 via-gray-800 to-gray-800/0 mx-auto"></span>
+
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemProfile />
               </li>
+
+              <span className="sm:hidden block w-3/4 h-px bg-gradient-to-tr from-gray-800/0 via-gray-800 to-gray-800/0 mx-auto"></span>
 
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemDisconnect />

@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useWeb3ModalEvents } from "@web3modal/wagmi/react";
 
+import { useWalletTokens } from "@/hooks/useWalletTokens";
+
 import type { Address } from "viem";
 import type { EvmChain } from "@moralisweb3/common-evm-utils";
-
-import { useWalletTokens } from "@/hooks/useWalletTokens";
 
 export const useSwapEvents = ({
   address,
@@ -36,6 +36,8 @@ export const useSwapEvents = ({
           label: "View transaction",
           onClick: () => open({ view: "Transactions" as any }),
         },
+        id: "swap-success",
+        duration: 10000,
       });
     }
   }, [close, event.event, open, refetch]);

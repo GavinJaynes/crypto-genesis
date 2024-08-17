@@ -1,13 +1,11 @@
 import { toast } from "sonner";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 import type { Address } from "viem";
 import type { EvmChain } from "@moralisweb3/common-evm-utils";
 
 import { useWalletTokens } from "@/hooks/useWalletTokens";
-
-import type { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
 export const useNotifications = ({
   address,
@@ -17,7 +15,6 @@ export const useNotifications = ({
   chain: EvmChain;
 }) => {
   const { open } = useWeb3Modal();
-  const previousTokensRef = useRef<EvmErc20TokenBalanceWithPrice[]>([]);
 
   const { walletTokens, isLoading, isError } = useWalletTokens({
     address,
@@ -64,6 +61,7 @@ export const useNotifications = ({
                 label: "Top up",
                 onClick: () => open({ view: "OnRampProviders" }),
               },
+              id: "gas-warning",
               duration: 10000,
             });
           }
@@ -71,7 +69,7 @@ export const useNotifications = ({
 
         // Price change notifications
         walletTokens.forEach((token) => {
-          if (Math.abs(Number(token.usdPrice24hrPercentChange)) > 10) {
+          if (Math.abs(Number(token.usdPrice24hrPercentChange)) > 5) {
             const direction =
               Number(token.usdPrice24hrPercentChange) > 0 ? "up" : "down";
             toast.info(`${token.symbol} price change`, {
@@ -80,53 +78,11 @@ export const useNotifications = ({
               } has moved ${direction} by ${Math.abs(
                 Number(token.usdPrice24hrPercentChange)
               ).toFixed(2)}% in the last 24 hours.`,
+              id: `price-change-${token.symbol}`,
               duration: 8000,
             });
           }
         });
-
-        // New tokens received
-        const newTokens = walletTokens.filter(
-          (token) =>
-            !previousTokensRef.current.some(
-              (prevToken) => prevToken.tokenAddress === token.tokenAddress
-            ) && parseFloat(token.balanceFormatted) > 0
-        );
-
-        newTokens.forEach((token) => {
-          toast.success(`New ${token.symbol} tokens received!`, {
-            description: `You've received ${token.balanceFormatted} ${
-              token.symbol
-            } (${(token.usdValue || 0).toFixed(2)} USD).`,
-            action: {
-              label: "View Details",
-              onClick: () => {
-                /* Implement a function to show token details */
-              },
-            },
-            duration: 10000,
-          });
-        });
-
-        // Possible spam token warning
-        const possibleSpamTokens = walletTokens.filter(
-          (token) => token.possibleSpam
-        );
-        if (possibleSpamTokens.length > 0) {
-          toast.warning("Possible spam tokens detected", {
-            description: `${possibleSpamTokens.length} token(s) in your wallet might be spam. Be cautious when interacting with them.`,
-            action: {
-              label: "Learn More",
-              onClick: () => {
-                /* Implement a function to show info about spam tokens */
-              },
-            },
-            duration: 15000,
-          });
-        }
-
-        // Update previous tokens for next comparison
-        previousTokensRef.current = walletTokens;
       }
     }
   }, [isLoading, isError, walletTokens, chain, open]);

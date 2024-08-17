@@ -6,7 +6,7 @@ export const Glow = () => {
 
   return (
     <div
-      className="pointer-events-none absolute sm:left-12 -left-3/4 sm:top-1/2 top-1/3 -translate-y-1/2 transform-gpu blur-3xl lg:top-auto lg:translate-y-0 lg:transform-gpu"
+      className="pointer-events-none z-10 absolute top-1/2 -translate-y-1/2 inset-x-0 mx-auto translate-x-1/4  transform-gpu blur-3xl lg:transform-gpu border border-red-300"
       aria-hidden="true"
     >
       <div
@@ -14,7 +14,7 @@ export const Glow = () => {
           chainId === 1 && "from-indigo-200/20 to-indigo-600/80",
           chainId === 56 && "from-amber-200/20 to-amber-400/60",
           chainId === 42161 && "from-blue-100/20 to-blue-500/90",
-          "aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr opacity-40"
+          "aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr"
         )}
         style={{
           clipPath:

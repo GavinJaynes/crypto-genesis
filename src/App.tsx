@@ -4,7 +4,6 @@ import { useAccount } from "wagmi";
 import { getEvmChain } from "@/lib/utils";
 
 import Glow from "@/components/ui/glow";
-
 import WalletToken from "@/components/wallet-token";
 import SectionHero from "@/components/section-hero";
 import SectionShowcase from "@/components/section-showcase";
@@ -75,7 +74,7 @@ function App() {
           <Glow />
         </div>
       ) : (
-        <div className="overflow-y-auto overflow-x-hidden max-h-screen">
+        <div id="welcome_window" className="">
           <SectionHero />
           <SectionShowcase />
         </div>

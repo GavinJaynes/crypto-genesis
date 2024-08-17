@@ -1,6 +1,9 @@
+import { BadgeCheckIcon } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import showcaseImage from "@/assets/showcase.png";
 import bgGradient from "@/assets/bg-gradient.jpg";
-import { BadgeCheckIcon } from "lucide-react";
+
 import { ButtonModal } from "@/components/button-modal";
 
 const features = [
@@ -31,10 +34,20 @@ const features = [
 ];
 
 const SectionShowcase = () => {
+  const { scrollY } = useScroll();
+
+  const containerY = useTransform(scrollY, [0, 300], [100, 0]);
+  const containerScale = useTransform(scrollY, [0, 300], [0.25, 1]);
+
+  const screenshotScale = useTransform(scrollY, [0, 500], [0, 1]);
+
   return (
-    <div className="bg-gradient-to-b from-gray-950 to-gray-800 py-24">
+    <section className="bg-gradient-to-b from-gray-950 to-gray-800 py-24">
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24 ring-1 ring-indigo-400 shadow-2xl shadow-cyan-300">
+        <motion.div
+          style={{ scale: containerScale, translateY: containerY }}
+          className="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24 sm:ring-1 sm:ring-indigo-400 shadow-2xl shadow-cyan-300"
+        >
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
             <div className="lg:row-start-2 lg:max-w-md">
               <h2 className="text-3xl tracking-tight sm:text-4xl font-bold py-1  text-transparent bg-clip-text bg-gradient-to-r from-teal-100 to-indigo-400">
@@ -59,12 +72,13 @@ const SectionShowcase = () => {
                 alt="Product screenshot"
                 className="absolute inset-0 w-full h-full rounded-xl opacity-40"
               />
-              <img
+              <motion.img
                 src={showcaseImage}
                 alt="Product screenshots"
                 className="absolute top-0 right-[23%]"
                 width="1440"
                 height="1080"
+                style={{ scale: screenshotScale }}
               />
             </div>
             <div className="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10">
@@ -77,7 +91,7 @@ const SectionShowcase = () => {
                         aria-hidden="true"
                       />
                       {feature.name}
-                    </dt>{" "}
+                    </dt>
                     <dd className="inline">{feature.description}</dd>
                   </div>
                 ))}
@@ -112,9 +126,9 @@ const SectionShowcase = () => {
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

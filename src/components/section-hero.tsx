@@ -72,7 +72,7 @@ const HeroComponent = () => {
                     </ModalButton>
 
                     <ModalButton variant="outline" screen="ConnectSocials">
-                      Sign in with social
+                      Sign in with socials
                     </ModalButton>
 
                     <div className="hidden sm:flex items-center gap-x-2">

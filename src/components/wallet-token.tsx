@@ -6,7 +6,6 @@ import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
 import { cn, formatNumber } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import GlowCircle from "./ui/glow-circle";
 
 type WalletTokenProps = {
   token: EvmErc20TokenBalanceWithPrice;
@@ -36,7 +35,7 @@ const WalletToken = ({
     <section
       ref={section}
       id={token.symbol.toLowerCase()}
-      className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex flex-col justify-center sm:items-center snap-center"
+      className="mx-auto text-slate-200 relative h-svh shrink-0 w-svw flex flex-col justify-center sm:items-center snap-center overflow-hidden"
     >
       {isLoading && (
         <div className="flex gap-6">
@@ -45,12 +44,8 @@ const WalletToken = ({
         </div>
       )}
 
-      <div className="absolute bottom-0 inset-x-0 p-6 w-10 mx-auto opacity-50">
-        <GlowCircle />
-      </div>
-
       {token && (
-        <div className="flex flex-col gap-4 sm:pr-8 sm:pl-0 px-8">
+        <div className="flex flex-col gap-4 sm:pr-8 sm:pl-4 px-8 sm:max-w-xl w-full">
           <div className="flex sm:gap-4 gap-2 flex-wrap">
             <motion.span
               className={cn(

@@ -37,7 +37,7 @@ const SectionShowcase = () => {
         <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24 ring-1 ring-indigo-400 shadow-2xl shadow-cyan-300">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
             <div className="lg:row-start-2 lg:max-w-md">
-              <h2 className="text-3xl tracking-tight sm:text-4xl  text-transparent bg-clip-text bg-gradient-to-r from-teal-100 to-teal-300">
+              <h2 className="text-3xl tracking-tight sm:text-4xl font-bold py-1  text-transparent bg-clip-text bg-gradient-to-r from-teal-100 to-indigo-400">
                 Stellar features for your crypto odyssey
               </h2>
               <p className="mt-6 text-base leading-8 text-gray-300">

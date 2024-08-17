@@ -57,22 +57,22 @@ const NavigationWallet = ({
   }
 
   return (
-    <nav className="fixed right-3 sm:right-48 top-24 h-screen w-12">
-      <ul className="flex flex-col gap-6 sm:justify-center py-10 items-center h-full">
+    <nav className="fixed right-1 sm:right-12 top-1/2 -translate-y-1/2 h-screen w-12">
+      <ul className="flex flex-col gap-6 justify-center py-10 items-center h-full">
         {walletTokens.map((token, index) => (
           <li key={index} className="text-xs relative">
             {hash === `#${token.symbol.toLowerCase()}` && (
-              <div className="w-6 h-6 bg-white/70 blur rounded-full absolute inset-0 m-auto animate-in zoom-in duration-1000"></div>
+              <div className="sm:w-6 sm:h-6 w-5 h-5 bg-white/70 blur rounded-full absolute inset-0 m-auto animate-in zoom-in duration-1000"></div>
             )}
             <a className="relative" href={`#${token.symbol.toLowerCase()}`}>
               <span className="sr-only">{token.symbol}</span>
               <img
-                src={token.logo}
                 width={50}
                 height={50}
+                src={token.logo}
                 alt={token.symbol}
                 className={cn(
-                  "rounded-full w-6 h-auto",
+                  "rounded-full sm:w-6 h-auto w-5",
                   "opacity-50" && hash !== `#${token.symbol.toLowerCase()}`
                 )}
               />

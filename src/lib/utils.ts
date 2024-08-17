@@ -27,6 +27,8 @@ export const getEvmChain = (chainId: number) => {
       return EvmChain.ETHEREUM;
     case 56:
       return EvmChain.BSC;
+    case 42161:
+      return EvmChain.ARBITRUM;
     default:
       return EvmChain.BSC;
   }

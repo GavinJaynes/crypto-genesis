@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAccount } from "wagmi";
-import { motion, inView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 import { EvmErc20TokenBalanceWithPrice } from "@moralisweb3/common-evm-utils";
 
@@ -22,15 +22,15 @@ const WalletToken = ({
 }: WalletTokenProps) => {
   const { chainId } = useAccount();
   const section = useRef<HTMLDivElement>(null);
+  const isInView = useInView(section, { amount: 0.5 });
 
   useEffect(() => {
     if (section.current) {
-      inView(section.current, () => {
-        // Add hash
-        window.history.pushState(null, "", `#${section.current?.id}`);
-      });
+      if (isInView) {
+        window.history.replaceState(null, "", `#${section.current?.id}`);
+      }
     }
-  }, [section, chainId]);
+  }, [section, chainId, isInView]);
 
   return (
     <section

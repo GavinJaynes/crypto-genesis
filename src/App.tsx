@@ -9,11 +9,12 @@ import SectionHero from "@/components/section-hero";
 import SectionShowcase from "@/components/section-showcase";
 import NavigationWallet from "@/components/navigation-wallet";
 import NavigationAccount from "@/components/navigation-account";
+import { ScrollDownChevron } from "@/components/ui/scroll-down-chevron";
 
 // Better name this
 import UserBalance from "@/components/user-balance";
 
-import { useSwapEvents } from "@/hooks/useSwapEvents";
+import { useModalEvents } from "@/hooks/useModalEvents";
 import { useWalletTokens } from "@/hooks/useWalletTokens";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -32,15 +33,18 @@ function App() {
     window.history.pushState(null, "", window.location.pathname);
   }, []);
 
-  // Init swap events
-  useSwapEvents({ address, chain: getEvmChain(chainId || 56) });
+  // Init modal events
+  useModalEvents({ address, chain: getEvmChain(chainId || 56) });
   // Init notifications events
   useNotifications({ address, chain: getEvmChain(chainId || 56) });
 
   return (
     <>
       {isConnected ? (
-        <div className="min-h-svh bg-zinc-950 flex items-center justify-center relative overflow-hidden isolate">
+        <div
+          id="app_widow"
+          className="min-h-svh bg-zinc-950 flex items-center justify-center relative overflow-hidden isolate"
+        >
           <div
             ref={ref}
             className="flex flex-col gap-2 relative snap-y snap-mandatory overflow-y-auto overflow-x-hidden max-h-screen"
@@ -66,11 +70,12 @@ function App() {
                 />
               )}
 
-              <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full sm:inset-x-6 sm:flex ">
+              <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full max-w-xs sm:inset-x-6 sm:flex ">
                 <NavigationAccount />
               </div>
             </>
           </div>
+          {walletTokens.length > 1 && <ScrollDownChevron />}
           <Glow />
         </div>
       ) : (

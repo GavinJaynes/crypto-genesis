@@ -8,7 +8,7 @@ import { useWalletTokens } from "@/hooks/useWalletTokens";
 import type { Address } from "viem";
 import type { EvmChain } from "@moralisweb3/common-evm-utils";
 
-export const useSwapEvents = ({
+export const useModalEvents = ({
   address,
   chain,
 }: {
@@ -24,6 +24,10 @@ export const useSwapEvents = ({
   });
 
   useEffect(() => {
+    if (event.event === "MODAL_OPEN") {
+      toast.dismiss();
+    }
+
     // Get new balance after swap
     if (event.event === "SWAP_SUCCESS") {
       // Close the modal

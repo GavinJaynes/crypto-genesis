@@ -11,7 +11,7 @@ import NavigationWallet from "@/components/navigation-wallet";
 import NavigationAccount from "@/components/navigation-account";
 import { ScrollDownChevron } from "@/components/ui/scroll-down-chevron";
 
-// Better name this
+// This is a fallback for when Moralis rate limit is hit
 import UserBalance from "@/components/user-balance";
 
 import { useModalEvents } from "@/hooks/useModalEvents";

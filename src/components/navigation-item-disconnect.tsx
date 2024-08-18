@@ -14,7 +14,7 @@ const NavigationItemDisconnect = () => {
         <LogOutIcon size={14} /> Disconnect wallet
       </h5>
       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2">
-        Bye bye, so long...
+        We hope you enjoyed your stay with us. Bye bye, see you soon!
       </p>
     </button>
   );

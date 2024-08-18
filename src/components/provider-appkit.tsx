@@ -10,10 +10,10 @@ const queryClient = new QueryClient();
 const projectId = import.meta.env.VITE_PROJECT_ID;
 
 const metadata = {
-  name: "WalletPal",
+  name: "Crypto Genesis",
   description: "Build the New Internet Hackathon - Submission by Garlic",
-  url: "https://main--wallet-pal.netlify.app/",
-  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  url: "https://crypto-genesis.netlify.app/",
+  icons: ["https://crypto-genesis.netlify.app/genesis.png"],
 };
 
 const chains = [mainnet, arbitrum, bsc] as const;
@@ -26,7 +26,6 @@ const config = defaultWagmiConfig({
   },
 });
 
-// 3. Create modal
 createWeb3Modal({
   metadata,
   wagmiConfig: config,

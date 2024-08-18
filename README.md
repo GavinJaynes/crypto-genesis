@@ -76,4 +76,16 @@ This all-in-one solution truly democratizes access to the world of cryptocurrenc
 
 ## Tech Stack
 
-# React + TypeScript + Vite
+- React + TypeScript + Vite
+- WalletConnect's AppKit
+- Tailwind CSS
+- Framer Motion
+- Tailwind UI
+- Moralis API
+- ShadCN/UI
+
+## How to run locally
+
+`pnpm install`
+
+`pnpm run dev`

@@ -41,7 +41,7 @@ const NavigationAccount = () => {
             Do stuff
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+            <ul className="grid gap-3 p-4 md:w-[400px] w-[340px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <div className="flex gap-4 h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-zinc-800 to-zinc-900 p-3 no-underline outline-none focus:shadow-md">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-600 text-2xl tracking-tight">
@@ -74,12 +74,13 @@ const NavigationAccount = () => {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="gap-2">
+          <NavigationMenuTrigger className="gap-2 ">
             <WalletIcon size={16} />${formatNumber(totalNetWorth)} USD
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-full gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid  gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] w-[340px]">
               <li className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <NavigationItemWallet address={address!} />
               </li>

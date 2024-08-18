@@ -46,10 +46,13 @@ export const useNotifications = ({
             });
 
             toast("Welcome to the world of crypto!", {
-              description: `To get started, you might want to buy some ${nativeToken.symbol}.`,
+              description: `To get started, you can buy some ${nativeToken.symbol}.`,
               action: {
                 label: `Buy ${nativeToken.symbol}`,
-                onClick: () => open({ view: "OnRampProviders" }),
+                onClick: () => {
+                  toast.dismiss();
+                  open({ view: "OnRampProviders" });
+                },
               },
               id: "buy-native-token",
               duration: 20000,

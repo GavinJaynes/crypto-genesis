@@ -21,18 +21,18 @@ const HeroComponent = () => {
 
   return (
     <section className="bg-gray-950">
-      <header className="absolute inset-x-0 top-0 z-50 bg-zinc-950/95 [mask-image:linear-gradient(to_bottom,black_80%,transparent)]">
+      <header className="fixed inset-x-0 top-0 z-50 bg-zinc-950/95 [mask-image:linear-gradient(to_bottom,black_80%,transparent)]">
         <nav
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+            <div className="p-1.5 flex items-center gap-2">
               <span className="sr-only">Crypto Genesis</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-600 text-2xl tracking-tight">
                 Crypto Genesis
               </span>
-            </a>
+            </div>
           </div>
 
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
@@ -54,7 +54,7 @@ const HeroComponent = () => {
         </nav>
       </header>
       <div>
-        <div className="relative isolate">
+        <div className="relative isolate pt-16">
           <CubeAnimation />
 
           <GlowEffect />

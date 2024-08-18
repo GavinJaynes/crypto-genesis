@@ -5,7 +5,7 @@ import Bsc from "@/components/icons/bsc";
 import Ethereum from "@/components/icons/ethereum";
 import Arbitrum from "@/components/icons/arbitrum";
 
-import { ButtonModal } from "./button-modal";
+import { ButtonModal } from "@/components/button-modal";
 
 const NavigationItemNetworkSwitch = () => {
   const { chains, switchChain } = useSwitchChain();

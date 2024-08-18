@@ -97,7 +97,15 @@ const WalletToken = ({
               ${formatNumber(Number(token.usdValue))} USD
             </motion.span>
 
-            <div className="flex gap-2 items-center">
+            <motion.div
+              className="flex gap-2 items-center"
+              initial={{
+                opacity: 0,
+                translateX: -50,
+              }}
+              transition={{ duration: 0.25, delay: 0.5, ease: "easeOut" }}
+              whileInView={{ opacity: 1, translateX: 0 }}
+            >
               <div className="flex items-center gap-1">
                 {Number(token.usdPrice24hrPercentChange) > 0 && (
                   <TrendingUpIcon className="h-10 w-10 text-green-500" />
@@ -110,10 +118,24 @@ const WalletToken = ({
               <p className="text-sm">
                 {formatNumber(Number(token.usdPrice24hrPercentChange))}% 24 hrs
               </p>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="flex gap-4 items-center">
+          <motion.div
+            className="flex gap-4 items-center"
+            initial={{
+              opacity: 0,
+              translateY: scrollDirection === "down" ? -50 : 50,
+            }}
+            transition={{
+              delay: 0.25,
+              damping: 10,
+              stiffness: 100,
+              type: "spring",
+            }}
+            viewport={{ once: true }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+          >
             <p className="text-xs text-gray-400">
               {token.portfolioPercentage.toFixed(2)}% of total portfolio
             </p>
@@ -121,7 +143,7 @@ const WalletToken = ({
             <p className="text-xs text-gray-400">
               One {token.symbol} = ${formatNumber(Number(token.usdPrice))} USD
             </p>
-          </div>
+          </motion.div>
         </div>
       )}
     </section>

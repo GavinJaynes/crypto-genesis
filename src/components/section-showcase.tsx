@@ -69,11 +69,13 @@ const SectionShowcase = () => {
               <img
                 src={bgGradient}
                 alt="Product screenshot"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full rounded-xl opacity-40"
               />
               <motion.img
                 src={showcaseImage}
                 alt="Product screenshots"
+                loading="lazy"
                 className="absolute top-0 right-[23%]"
                 width="1440"
                 height="1080"

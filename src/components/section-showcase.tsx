@@ -14,7 +14,7 @@ const features = [
     icon: BadgeCheckIcon,
   },
   {
-    name: "Earth-to-Crypto Launchpad:",
+    name: "Earth-to-Crypto Launchpad: ",
     description:
       "Use your earthly currency to fuel your journey – buy crypto directly with fiat, no lunar exchange required.",
     icon: BadgeCheckIcon,
@@ -37,8 +37,8 @@ const SectionShowcase = () => {
   const { scrollY } = useScroll();
 
   const containerY = useTransform(scrollY, [0, 300], [50, 0]);
-  const screenshotScale = useTransform(scrollY, [0, 500], [0, 1]);
-  const containerScale = useTransform(scrollY, [0, 300], [0.25, 1]);
+  const screenshotScale = useTransform(scrollY, [0, 700], [0, 1]);
+  const containerScale = useTransform(scrollY, [0, 400], [0.25, 1]);
 
   return (
     <section className="bg-gradient-to-b from-gray-950 to-gray-800 py-24">
@@ -91,7 +91,7 @@ const SectionShowcase = () => {
                       />
                       {feature.name}
                     </dt>
-                    <dd className="inline">{feature.description}</dd>
+                    <dd className="inline ml-1">{feature.description}</dd>
                   </div>
                 ))}
               </dl>

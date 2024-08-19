@@ -70,7 +70,7 @@ function App() {
                 />
               )}
 
-              <div className="fixed top-6 left-6 sm:top-[38%] sm:max-w-xl sm:mx-auto sm:w-full max-w-xs sm:inset-x-6 sm:flex ">
+              <div className="fixed top-6 left-6 sm:top-[calc(50svh-8rem)] sm:max-w-xl sm:mx-auto sm:w-full max-w-xs sm:inset-x-6 sm:flex ">
                 <NavigationAccount />
               </div>
             </>
@@ -79,7 +79,7 @@ function App() {
           <Glow />
         </div>
       ) : (
-        <div id="welcome_window" className="">
+        <div id="welcome_window">
           <SectionHero />
           <SectionShowcase />
         </div>
